@@ -1,5 +1,3 @@
-# https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html
-
 # import required packages
 import tensorflow as tf
 from keras.applications import mobilenet
