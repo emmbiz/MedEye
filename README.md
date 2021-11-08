@@ -26,8 +26,8 @@ Hence, this solution was created to be used by anyone to enable early detection 
 
 
 # Challenges faced
-Due to using a real-time image classifier through the device camera, it was initially difficult to classify X-ray images only without the model trying to classify unknown images in the background.
-This problem was solved by adding more negative images (images that don't belong to either class) to the classifier to improve its accuracy, and then retraining the model and importing the contents into the Android project.
+Due to using a real-time image classifier through the device camera, it was initially difficult to classify X-ray images only without the model trying to classify unknown images and unknown background.
+This problem was solved by adding more negative images (images that don't belong to either class) to the classifier to improve its accuracy, and then retraining the model and importing the contents into the Android Studio project.
 
 
 # Accomplishment
