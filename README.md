@@ -12,7 +12,7 @@ Hence, this solution was created to be used by anyone to enable early detection 
 # How it was built
 - X-ray images belonging to persons diagnosed with Covid-19 and normal X-ray images were gotten from the same Kaggle dataset, and then separated into categories for training, testing, and validation.
 - A Keras model was developed through training with images from the training set and validation set to validate training procedure, and then tested with images from the testing set.
-- The model was exported as a TensorFlow Lite model and downloaded as a .zip file with the contents extracted and placed in the Android project’s assets directory.
+- The model was exported as a TensorFlow Lite model and downloaded as a .zip file with the contents extracted and placed in the Android project’s assets folder.
 - The Android application was developed in Kotlin making use of TensorFlow Lite libraries and other application dependencies.
 - The developed application was tested to assess the performance of the model, and an iterative model training process was conducted to improve the model performance and to validate its core functionality.
 - The final application using the best model iteration was generated as a signed .apk in order to be installed and used on an Android device
@@ -26,8 +26,8 @@ Hence, this solution was created to be used by anyone to enable early detection 
 
 
 # Challenges faced
-Due to using a real-time image classifier through the device camera, it was initially difficult to classify X-ray images alone without classifying similar looking non-X-ray images in the background.
-This problem was solved by adding more negative images to the classifier to the extent allowed in the Azure subscription, and then retraining the model and importing the contents into the Android project.
+Due to using a real-time image classifier through the device camera, it was initially difficult to classify X-ray images only without the model trying to classify unknown images in the background.
+This problem was solved by adding more negative images (images that don't belong to either class) to the classifier to improve its accuracy, and then retraining the model and importing the contents into the Android project.
 
 
 # Accomplishment
