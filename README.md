@@ -20,8 +20,6 @@ Hence, this solution was created to be used by anyone to enable early detection 
 
 # Screenshots  
 
-![Custom Vision portal screenshot](https://user-images.githubusercontent.com/87937713/131334740-92dd67bb-00f2-4a5d-ae44-e922de2f2366.PNG)
-
 | Normal      | Covid      |
 |------------|-------------|
 | ![Screenshot 1_normal - Copy](https://user-images.githubusercontent.com/87937713/131337247-477a6d89-cdd6-4bc1-a259-0086a3d8000d.png) | ![Screenshot 2_covid - Copy](https://user-images.githubusercontent.com/87937713/131337255-da4f1fa7-57bc-4409-84db-98284f1733a5.png) |
