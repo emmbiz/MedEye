@@ -119,7 +119,7 @@ model = Model(inputs=base_model.input, outputs=head_model)
 
 # Initialize the initial learning rate and number of epochs
 INIT_LR = 1e-4
-EPOCHS = 10
+EPOCHS = 100
 
 # Compile the model
 print("[INFO] compiling model...")
@@ -128,8 +128,9 @@ model.compile(loss="categorical_crossentropy", optimizer=opt,
 	metrics=["accuracy"])
 
 # Show the full model summary
-#print(model.summary())
+print(model.summary())
 
+# Stop training when 99% accuracy is reached
 class myCallback(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs={}):
         accuracy = 0.99
@@ -140,7 +141,7 @@ class myCallback(tf.keras.callbacks.Callback):
 
 callbacks = myCallback()
 
-# Train the head of the network for 20 epochs
+# Train the head of the network for 100 epochs
 print("[INFO] training head...")
 hist = model.fit(
 	train_generator,
@@ -184,26 +185,7 @@ plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.show()
 
-# Plot random test images with their predicted labels
-plt.figure(figsize=(10, 10))
-for i in range(20):
-  ax = plt.subplot(4, 5, i+1)
-  plt.xticks([])
-  plt.yticks([])
-  plt.grid(False)
-  plt.subplots_adjust(hspace=0.5)
-
-  index = random.randint(0, len(predIdxs) - 1)
-  plt.imshow(testing_images[index], cmap=plt.cm.gray)
-
-  color = 'blue' if predIdxs[index] == trueIdxs[index] else 'red'
-  plt.xlabel("{} {:2.0f}% [{}]".format(lb.classes_[predIdxs[index]],
-                                       100 * np.max(class_predictions[i]),
-                                       lb.classes_[trueIdxs[index]]), color=color)
-plt.suptitle("Class Predictions")
-#plt.tight_layout()
-plt.show()
-
+# Helper functions for plotting results
 def plot_image(predictions, true_label, img):
     plt.xticks([])
     plt.yticks([])
@@ -231,8 +213,8 @@ def plot_value_array(predictions, true_label):
     thisplot[predicted_label].set_color('red')
     thisplot[true_label].set_color('blue')
 
-# Plot random test images with their predicted and true labels
-print("[INFO] generating random plots...")
+# Plot test images with their predicted and true labels
+print("[INFO] generating plots...")
 num_rows = 4
 num_cols = 5
 num_images = num_rows * num_cols
@@ -240,19 +222,16 @@ plt.figure(figsize=(2*2*num_cols, 2*num_rows))
 for i in range(num_images):
   image_plt = np.squeeze(testing_images[i])
   true_label = np.argmax(testing_labels[i])
-
-  index = random.randint(0, len(predIdxs) - 1)
-  #plt.imshow(testing_images[index], cmap=plt.cm.gray)
-
+  #index = random.randint(0, len(predIdxs) - 1)
   plt.subplot(num_rows, 2 * num_cols, 2 * i + 1)
   plot_image(class_predictions[i], true_label, image_plt)
   plt.subplot(num_rows, 2 * num_cols, 2 * i + 2)
   plot_value_array(class_predictions[i], true_label)
-plt.suptitle("Predictions for {} random test images".format(num_images))
+plt.suptitle("Predictions for {} test images".format(num_images))
 plt.tight_layout()
 plt.show()
 
-# Plot single image
+# Plot a single image with its predicted label
 def classify_image(image_path, true_label):
     # Load the input image (224x224) and preprocess it
     img = load_img(image_path, target_size=image_size)
@@ -306,7 +285,6 @@ print('[INFO] TFLite Float model size = %dKBs.' % float_model_size)
 
 # Re-convert the model to TF Lite using quantization
 converter.optimizations = [tf.lite.Optimize.DEFAULT]
-#converter.optimizations = [tf.lite.Optimize.OPTIMIZE_FOR_SIZE]
 tflite_quantized_model = converter.convert()
 open("classifier_quant_model _ {}.tflite".format(now), "wb").write(tflite_quantized_model)
 # Show model size in KBs
