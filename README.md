@@ -21,6 +21,13 @@ Hence, this solution can be used by anyone to enable early detection and faster 
 - The final application utilizing the best trained model was built and generated as a signed .apk for installation and use on an Android device.
 
 
+
+# Screenshots  
+
+| Normal      | Covid      |
+|------------|-------------|
+| ![Screenshot_normal](https://user-images.githubusercontent.com/87937713/144051649-be1dcf0e-74eb-49fb-9cfc-48d872e15dc2.png) | ![Screenshot_covid](https://user-images.githubusercontent.com/87937713/144051655-8df90e72-769d-40ab-a4e8-79b5228b8c66.png) |
+
 # Challenges faced
 Classifying X-ray images only without classifying non-X-ray images was initially difficult due to training on only two possible classes. However, this was overcome by finding a dataset containing negative images and retraining the model with these negative images to predict a class for images that are not X-ray images, or cannot be classified as such.
 
