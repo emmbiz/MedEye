@@ -4,10 +4,7 @@
 
     <item
         android:id="@+id/uploadImageItem"
-        android:icon="@drawable/ic_baseline_file_upload_24"
-        android:title="@string/camera_menu_item_upload"
-        android:background="@color/white"
-        app:tint="@color/white"
+        android:title="@string/camera_menu_image_upload"
         app:showAsAction="never" />
 
 </menu>

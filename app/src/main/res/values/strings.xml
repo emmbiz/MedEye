@@ -3,25 +3,30 @@
 
     <string name="app_title">MedEye</string>
 
-    <string name="results_header_text">Your Result</string>
-    <string name="default_button_text">Not an X-ray Image</string>
+    <string name="capture_disabled_message">No X-ray Image Found:
+        \nPlease move the device camera closer to the X-ray image.
+    </string>
+    <string name="capture_button_text">Capture</string>
 
+    <string name="camera_menu_image_upload">Upload X-ray Image</string>
+    <string name="on_select_image_message">Please select an image.</string>
+
+    <!-- Strings for Results -->
+    <string name="results_header_text">Your Result</string>
     <string name="no_xray_image_label">Not an X-ray Image</string>
     <string name="covid_label">Covid Detected</string>
     <string name="normal_label">Normal</string>
+    <string name="unknown_image_label">Unknown</string>
 
-    <string name="unknown_label_text">unknown</string>
-    <string name="back_button_text">Back</string>
-
-    <string name="camera_menu_item_upload">Upload X-ray Image</string>
-    <string name="on_select_image_message">Please select an image.</string>
+    <string name="result_confidence_info">%s%% Confidence</string>
+    <string name="fab_content_description">Dismiss</string>
 
     <!-- Message dialog -->
-    <string name="result_dialog_title">Covid-19 Detected</string>
-    <string name="result_dialog_message">Your health is at risk. Please visit your nearest hospital to consult a doctor.</string>
-    <string name="result_dialog_feedback">Wishing you a speedy recovery!</string>
+    <string name="result_dialog_title">Covid Detected!</string>
+    <string name="result_dialog_message">Please visit your nearest hospital and consult a doctor
+        as soon as possible.
+    </string>
     <string name="result_dialog_positive_button_text">Ok</string>
-    <string name="no_xray_image_found_message">No X-ray Image found.</string>
 
     <string-array name="devices">
         <item>GPU</item>

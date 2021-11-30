@@ -30,6 +30,7 @@
 
         <activity
             android:name=".SplashScreen"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.MedEyeSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,8 +40,9 @@
         </activity>
         <activity
             android:name=".CameraActivity"
-            android:clearTaskOnLaunch="true"
-            android:rotationAnimation="seamless"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             tools:targetApi="O">
             <intent-filter>
                 <action android:name="com.dizzmob.medeye.CameraActivity" />

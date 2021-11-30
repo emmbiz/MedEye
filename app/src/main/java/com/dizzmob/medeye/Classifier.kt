@@ -26,15 +26,17 @@ class Classifier(val context: Context, assetManager: AssetManager) {
     private var interpreter: Interpreter
     private var labelList: List<String>
 
+    private var BATCH_SIZE: Int = 1
     private var INPUT_SIZE: Int = 224
+
     private val PIXEL_SIZE: Int = 3
     private val FLOAT_TYPE_SIZE: Int = 4
 
-    private val IMAGE_MEAN = 0.0f
-    private val IMAGE_STD = 1.0f
+    private val IMAGE_MEAN = 128
+    private val IMAGE_STD = 128.0f
 
     private val MAX_RESULTS = 3
-    private val THRESHOLD = 0.6f
+    private val THRESHOLD = 0.5f
 
     private var gpuDelegate: GpuDelegate? = null
 
@@ -48,8 +50,10 @@ class Classifier(val context: Context, assetManager: AssetManager) {
     init {
         try {
             val options = Interpreter.Options()
-            //gpuDelegate = GpuDelegate()
-            //options.addDelegate(gpuDelegate)
+            gpuDelegate = GpuDelegate()
+            options.addDelegate(gpuDelegate)
+            options.setNumThreads(5)
+            options.setUseNNAPI(true)
             interpreter = Interpreter(loadModelFile(assetManager, modelPath), options)
             interpreter.allocateTensors()
 
@@ -95,6 +99,8 @@ class Classifier(val context: Context, assetManager: AssetManager) {
 
         val inferenceTime = endTime - startTime
 
+        Log.d("Classifier", "Time taken to run model inference: $inferenceTime")
+
         return getSortedResult(result)
     }
 
@@ -113,7 +119,7 @@ class Classifier(val context: Context, assetManager: AssetManager) {
     }
 
     private fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
-        val byteBuffer = ByteBuffer.allocateDirect(1 * INPUT_SIZE * INPUT_SIZE * PIXEL_SIZE * FLOAT_TYPE_SIZE)
+        val byteBuffer = ByteBuffer.allocateDirect(BATCH_SIZE * INPUT_SIZE * INPUT_SIZE * PIXEL_SIZE * FLOAT_TYPE_SIZE)
 
         byteBuffer.order(ByteOrder.nativeOrder())
 

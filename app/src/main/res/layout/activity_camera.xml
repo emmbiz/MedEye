@@ -22,9 +22,9 @@
         android:paddingBottom="6dp"
         android:paddingLeft="59dp"
         android:paddingRight="59dp"
-        android:background="@drawable/result_default"
-        android:text="@string/default_button_text"
-        android:textSize="21sp"
+        android:background="@drawable/button_disabled"
+        android:text="@string/capture_button_text"
+        android:textSize="23sp"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:fontFamily="sans-serif"
@@ -39,27 +39,59 @@
         android:id="@+id/imagePredicted"
         android:layout_width="224dp"
         android:layout_height="224dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/textPrediction"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.2" />
 
-    <TextView
+    <Button
         android:id="@+id/textPrediction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:fontFamily="sans-serif-thin"
-        android:text=""
-        android:textColor="@color/white"
+        android:layout_marginTop="32dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:paddingLeft="59dp"
+        android:paddingRight="59dp"
+        android:visibility="gone"
 
-        android:textSize="30sp"
+        android:background="@drawable/result_default"
+        android:text="@string/unknown_image_label"
+        android:textSize="23sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif"
+
+        app:backgroundTint="@null"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagePredicted" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:contentDescription="@string/fab_content_description"
+        android:src="@drawable/ic_baseline_close_24"
+        android:tint="@color/white"
+        android:visibility="gone"
+        app:backgroundTint="@color/blue"
+        app:fabCustomSize="59dp"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="42dp"
+        app:rippleColor="@color/fab_ripple_color"
+        app:tint="@null" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
