@@ -1,36 +1,43 @@
 # Introduction
-MedEye is a real-time image classifier application that can classify chest X-ray images to predict whether an X-ray image belongs to a person infected with Covid-19 or not. It bypasses the use of testing kits by processing X-ray images in real-time through the device camera to detect the presence of Covid-19 in a given X-ray image.
+MedEye is an image classification app that can classify chest X-ray images to predict the likelihood that an X-ray image belongs to a person infected with Covid-19 or not. It bypasses the process of using testing kits by processing X-ray images captured through the device camera to detect the presence of Covid-19 from the given image.
 
 
 # Inspiration
-Early diagnosis of Covid-19 could be difficult, and people with mild symptoms may not be fully aware so as to begin necessary treatment as soon as possible. Accelerating diagnosis of Covid-19 for faster time to treatment is therefore an important public health concern.
-Given the limited number of Covid-19 testing kits available for Covid-19 testing, this application was developed to solve the problem of relying on only one measure of diagnosis.
-Since Covid-19 attacks the epithelial cells that line our respiratory tract, X-ray images can be used to analyze the health of an individual’s lungs to determine the likelihood of being infected with Covid-19.
-Hence, this solution was created to be used by anyone to enable early detection and faster treatment time.
+Early diagnosis of Covid-19 could be difficult and people who are already infected may not be fully aware so as to begin necessary treatment as soon as possible. Accelerating diagnosis of Covid-19 for faster treatment time and quicker eradication of the virus is therefore an important public health concern.
+
+Given the limited number of Covid-19 testing kits available for wide-range use, this application was developed to solve the problem of relying on only one measure of diagnosis.
+
+Since Covid-19 attacks the epithelial cells that line our respiratory tract, X-ray images can be used to analyze the health of an individual’s lungs to determine the likelihood that the individual has been infected with Covid-19.
+
+Hence, this solution can be used by anyone to enable early detection and faster treatment time.
 
 
 # How it was built
-- X-ray images belonging to persons diagnosed with Covid-19 and normal X-ray images were gotten from the same Kaggle dataset, and then separated into categories for training, testing, and validation.
-- A Keras model was developed through training with images from the training set and validation set to validate training procedure, and then tested with images from the testing set.
-- The model was exported as a TensorFlow Lite model and downloaded as a .zip file with the contents extracted and placed in the Android project’s assets folder.
-- The Android application was developed in Kotlin making use of TensorFlow Lite libraries and other application dependencies.
-- The developed application was tested to assess the performance of the model, and an iterative model training process was conducted to improve the model performance and to validate its core functionality.
-- The final application using the best model iteration was generated as a signed .apk in order to be installed and used on an Android device
+- X-ray images belonging to patients diagnosed with Covid-19, and normal X-ray images were gotten from a Kaggle dataset and separated into categories for training and testing.
+- Training images were further divided into training and validation sets to train the model with the training set and validate the performance of the training process with the validation set.
+- A CNN classifier network was trained using Transfer Learning on the MobileNetV2 network, and a Keras model was developed and evaluated for best predictive performance.
+- The trained model was converted to TensorFlow Lite format and used in an Android application developed in Kotlin making use of TensorFlow Lite libraries and other application dependencies.
+- The developed Android application was tested to assess the practical performance of the model, and an iterative model training process was conducted to improve the model’s performance and to validate its functionality.
+- The final application utilizing the best trained model was built and generated as a signed .apk for installation and use on an Android device.
+
 
 
 # Screenshots  
 
 | Normal      | Covid      |
 |------------|-------------|
-| ![Screenshot 1_normal - Copy](https://user-images.githubusercontent.com/87937713/131337247-477a6d89-cdd6-4bc1-a259-0086a3d8000d.png) | ![Screenshot 2_covid - Copy](https://user-images.githubusercontent.com/87937713/131337255-da4f1fa7-57bc-4409-84db-98284f1733a5.png) |
-
+| ![Screenshot_normal](https://user-images.githubusercontent.com/87937713/144051649-be1dcf0e-74eb-49fb-9cfc-48d872e15dc2.png) | ![Screenshot_covid](https://user-images.githubusercontent.com/87937713/144051655-8df90e72-769d-40ab-a4e8-79b5228b8c66.png) |
 
 # Challenges faced
-Due to using a real-time image classifier through the device camera, it was initially difficult to classify X-ray images only without the model trying to classify unknown images and backgrounds.
-This problem was solved by adding more negative images (images that don't belong to either class) to the classifier to improve its accuracy, and then retraining the model and importing the contents into the Android Studio project.
+Classifying X-ray images only without classifying non-X-ray images was initially difficult due to training on only two possible classes. However, this was overcome by finding a dataset containing negative images and retraining the model with these negative images to predict a class for images that are not X-ray images, or cannot be classified as such.
 
 
 # Accomplishment
-Built an Android app that can classify X-ray images to predict the likelihood of Covid-19 being present in the body of its owner with a good accuracy.
+Built an Android app that can classify X-ray images to predict the presence of Covid-19 in the body with good accuracy.
+
+
+# Kaggle Datasets
+- Chest X-Ray Images: https://www.kaggle.com/ankitachoudhury01/covid-patients-chest-xray
+- Negative Images: https://www.kaggle.com/muhammadkhalid/negative-images
 
 
